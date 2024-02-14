@@ -134,24 +134,23 @@
                                         <p class="text-sm text-gray-500">por
                                             @foreach($book->authors as $author)
                                                 <span>{{ $author->name }}</span>
+                                                @if(!$loop->last)
+                                                    ,
+                                                @endif
                                             @endforeach
                                         </p>
                                     </div>
                                     <div class="text-sm text-gray-600 py-2">
-                                        Un clásico en la comunidad de desarrollo de software, "Clean Code" de Robert C. Martin
-                                        enseña principios y prácticas para escribir código limpio, legible y mantenible.
+                                        {{ $book->description }}
                                     </div>
-                                    <div class="flex mt-4">
-                                        <div>
-                                            <p tabindex="0"
-                                               class="focus:outline-none text-xs text-gray-600 px-2 bg-gray-200 py-1">
-                                                Programación</p>
-                                        </div>
-                                        <div class="pl-2">
-                                            <p tabindex="0"
-                                               class="focus:outline-none text-xs text-gray-600 px-2 bg-gray-200 py-1">Buenas
-                                                prácticas</p>
-                                        </div>
+                                    <div class="flex mt-4 gap-1">
+                                        @foreach($book->genres as $genre)
+                                            <div>
+                                                <p tabindex="0"
+                                                   class="focus:outline-none text-xs text-gray-600 px-2 bg-gray-200 py-1">
+                                                    {{ $genre->name }}</p>
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <div class="flex items-center mt-4 gap-2">
                                         <div class="flex items-center">

@@ -12,7 +12,7 @@ class WelcomePageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $books = Book::with('authors')->get();
+        $books = Book::with(['authors', 'genres'])->get();
 
         return view('welcome', compact('books'));
     }
