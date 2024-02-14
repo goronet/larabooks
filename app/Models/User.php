@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return !$this->isAdmin();
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
