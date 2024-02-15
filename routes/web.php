@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', \App\Http\Controllers\WelcomePageController::class);
+Route::get('/books', \App\Http\Controllers\BookPageController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,16 +27,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('is.admin')->group(function() {
-    Route::get('/only-admin', function() {
+Route::middleware('is.admin')->group(function () {
+    Route::get('/only-admin', function () {
         return 'Sólo el administrador puede ver esto';
     });
 });
 
-Route::middleware('is.reader')->group(function() {
-    Route::get('/only-reader', function() {
+Route::middleware('is.reader')->group(function () {
+    Route::get('/only-reader', function () {
         return 'Sólo el lector puede ver esto';
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
