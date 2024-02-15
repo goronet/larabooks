@@ -13,15 +13,13 @@ class WelcomePageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $books = Book::query()
+        $featuredBooks = Book::query()
             ->with(['authors', 'genres', 'reviews'])
             ->withCount('reviews')
             ->withAvg('reviews', 'stars')
             ->orderByDesc('reviews_count')
             ->take(4)
             ->get();
-
-        // DB::enableQueryLog();
 
         $reviews = Review::query()
             ->with(['book', 'user'])
@@ -30,8 +28,14 @@ class WelcomePageController extends Controller
             ->get()
             ->random(4);
 
-        // dd(DB::getQueryLog());
+        $books = Book::query()
+            ->with(['authors', 'genres', 'reviews'])
+            ->withAvg('reviews', 'stars')
+            ->withCount('reviews')
+            ->orderByDesc('reviews_avg_stars')
+            ->take(8)
+            ->get();
 
-        return view('welcome', compact('books', 'reviews'));
+        return view('welcome', compact('featuredBooks', 'reviews', 'books'));
     }
 }
