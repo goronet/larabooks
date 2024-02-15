@@ -21,11 +21,16 @@ class WelcomePageController extends Controller
             ->take(4)
             ->get();
 
+        // DB::enableQueryLog();
+
         $reviews = Review::query()
+            ->with(['book', 'user'])
             ->where('is_approved', '=', 1)
             ->where('stars', '=', 5)
             ->get()
             ->random(4);
+
+        // dd(DB::getQueryLog());
 
         return view('welcome', compact('books', 'reviews'));
     }
