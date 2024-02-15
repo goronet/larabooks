@@ -16,7 +16,7 @@ class BookPageController extends Controller
             ->with(['authors', 'genres', 'reviews'])
             ->withAvg('reviews', 'stars')
             ->withCount('reviews')
-            ->paginate(8);
+            ->paginate(1);
 
         return view('books', compact('books'));
     }
