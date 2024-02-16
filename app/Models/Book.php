@@ -9,6 +9,10 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     protected $guarded = [];
 
     public function reviews()
