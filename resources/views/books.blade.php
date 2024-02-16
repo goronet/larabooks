@@ -60,9 +60,12 @@
                                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                     </svg>
                                 </div>
-                                <input type="search" id="default-search"
+                                <input type="search"
+                                       id="default-search"
+                                       name="search"
                                        class="mt-8 block p-4 pl-10 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                                       placeholder="Ingresar el nombre del libro o los autores" required>
+                                       placeholder="Ingresar el nombre del libro o los autores"
+                                       value="{{ request('search') }}">
                                 <button type="submit"
                                         class="text-white absolute right-2.5 bottom-2.5 bg-gradient-to-b from-blue-600 to-blue-700 text-white outline-none focus:outline-none hover:shadow-lg hover:from-blue-700 hover:to-blue-700 transition duration-200 ease-in-out font-medium rounded-lg text-sm px-4 py-2">
                                     Buscar

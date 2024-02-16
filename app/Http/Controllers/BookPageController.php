@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class BookPageController extends Controller
@@ -16,7 +17,13 @@ class BookPageController extends Controller
             ->with(['authors', 'genres', 'reviews'])
             ->withAvg('reviews', 'stars')
             ->withCount('reviews')
-            ->paginate(1);
+            ->when(request('search'), function (Builder $query, $value) {
+                $query->whereRaw('books.name LIKE ?', ["%${value}%"])
+                    ->orWhereHas('authors', function (Builder $query) use ($value) {
+                        $query->whereRaw('authors.name LIKE ?', ["%${value}%"]);
+                    });
+            })
+            ->paginate(8);
 
         return view('books', compact('books'));
     }
