@@ -110,17 +110,22 @@
                         @auth()
                             <!-- Create review -->
                             <p class="text-gray-700 text-base mt-3">Crear Reseña</p>
-                            <form action="#" method="POST" class="space-y-6 mt-2 mb-4 bg-gray-50 p-4 rounded-lg">
+                            <form action="{{ route('reviews.store', $book) }}"
+                                  method="POST"
+                                  class="space-y-6 mt-2 mb-4 bg-gray-50 p-4 rounded-lg">
+                                @csrf
                                 <div>
                                     <label for="subject" class="text-sm text-gray-500">Asunto</label>
-                                    <input type="text" name="subject" id="subject" placeholder="Ingresar asunto"
+                                    <input type="text" name="title" id="subject" placeholder="Ingresar asunto"
                                            class="block p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500"/>
+                                    <x-input-error :messages="$errors->get('title')" class="mt-2"/>
                                 </div>
 
                                 <div>
                                     <label for="text" class="text-sm text-gray-500">Reseña</label>
-                                    <textarea name="text" id="text" placeholder="Ingresar reseña"
+                                    <textarea name="description" id="text" placeholder="Ingresar reseña"
                                               class="block p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500"></textarea>
+                                    <x-input-error :messages="$errors->get('description')" class="mt-2"/>
                                 </div>
 
                                 <div>
@@ -165,6 +170,8 @@
                                                    class="text-gray-600">5</label>
                                         </div>
                                     </div>
+
+                                    <x-input-error :messages="$errors->get('stars')" class="mt-2"/>
                                 </div>
 
                                 <div>
@@ -297,8 +304,8 @@
                                     <ellipse cx="536.66" cy="378.44" rx="8.83" ry="10.55" fill="#f9b499"/>
                                 </svg>
                                 <div>
-                                    <a href="#" class="underline">Inicia Sesión</a> o <a
-                                        href="#" class="underline">Regístrate</a> para que puedas
+                                    <a href="{{ route('login') }}" class="underline">Inicia Sesión</a> o <a
+                                        href="{{ route('register') }}" class="underline">Regístrate</a> para que puedas
                                     crear
                                     una
                                     reseña
@@ -326,7 +333,7 @@
                             {{ $reviews->links() }}
                         </div>
                         <!-- /Pagination Section -->
-                        
+
                     </div>
                     <!-- /Review Section -->
 

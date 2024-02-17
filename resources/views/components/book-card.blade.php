@@ -1,6 +1,7 @@
 @props(['book', 'showDescription' => false])
 
-<a href="#" class="focus:outline-none xl:mb-0 mb-8 rounded-xl overflow-hidden shadow-xs bg-white">
+<a href="{{ route('books.show', $book) }}"
+   class="focus:outline-none xl:mb-0 mb-8 rounded-xl overflow-hidden shadow-xs bg-white">
     <div>
         <img alt="person capturing an image"
              src="https://m.media-amazon.com/images/I/41SH-SvWPxL._SX342_SY445_QL70_ML2_.jpg"
