@@ -23,6 +23,8 @@ class StoreBookReviewController extends Controller
             ...$validated
         ]);
 
+        $request->session()->flash('message', 'Reseña creada');
+
         return back();
     }
 }
